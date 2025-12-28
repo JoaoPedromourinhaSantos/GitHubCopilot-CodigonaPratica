@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Loja de Carros Usados - Home</title>
+    <link rel="stylesheet" href="carSales.css">
+</head>
+<body>
+    <header>
+        <div class="brand">
+            <h1>AutoMercado</h1>
+            <p>Carros usados com garantia e confiança</p>
+        </div>
+
+        <div class="controls">
+            <div class="search card" role="search" aria-label="Buscar carros">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M21 21l-4.35-4.35" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="11" cy="11" r="6" stroke="#6b7280" stroke-width="2"/></svg>
+                <input id="q" type="search" placeholder="Buscar por marca, modelo ou ano" />
+            </div>
+            <button class="btn" id="newListing">Anunciar veículo</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="card" aria-labelledby="carros-titulo">
+            <h2 id="carros-titulo" style="margin:0 0 12px 0">Carros disponíveis</h2>
+
+            <table id="carsTable" aria-describedby="lista-de-carros">
+                <thead>
+                    <tr>
+                        <th>Foto</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Ano</th>
+                        <th data-col="mileage">Quilometragem</th>
+                        <th>Preço</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="carsBody">
+                    <!-- Linhas serão geradas via JavaScript -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <!-- Toast de finalizando compra -->
+    <div id="purchaseToast" role="status" aria-live="polite">Finalizando compra...</div>
+
+    <script src="carSales.js"></script>
+</body>
+</html>
