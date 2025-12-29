@@ -47,7 +47,7 @@ jobs:
       - name: Upload artifact to GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: './CalculadoraDeGásCarbonico'
       
       # Step 4: Deploy the artifact to GitHub Pages
       - name: Deploy to GitHub Pages
