@@ -1,0 +1,55 @@
+name: Deploy to GitHub Pages
+
+# Trigger conditions
+on:
+  # Deploy on every push to main branch
+  push:
+    branches:
+      - main
+  # Allow manual deployment trigger
+  workflow_dispatch:
+
+# Set permissions for GitHub Pages deployment
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Prevent multiple deployments running concurrently
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  # Single deployment job
+  deploy:
+    name: Deploy to GitHub Pages
+    
+    # GitHub Pages environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
+    # Run on latest Ubuntu
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Step 1: Checkout the repository code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      # Step 2: Configure GitHub Pages settings
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v4
+      
+      # Step 3: Upload static files as artifact
+      # Uploads the entire root directory (includes HTML, CSS, JS files)
+      - name: Upload artifact to GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+      
+      # Step 4: Deploy the artifact to GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
